@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prayer Time</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <style>
+        body{
+            font-family:"Roboto",sans-serif;
+            background: linear-gradient(45deg,#240165,#05001c);
+        }
+        h1,h2,h3,h4,h5,h6{
+            margin: 3px 0;
+        }
+        #header{
+            margin-top: 10px;
+            display: flex;
+            background-color: rgba(0,0,0,0.5);
+            width:100%;
+            height: 50vh;
+            border-radius: 10px;
+        }
+        #titles{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 30%;
+        }
+        #city-name{
+            color: white;
+            font-weight: 300;
+            font-size: 70px;
+            text-indent: 30px;
+        }
+        #date{
+            color: white;
+            font-weight: 300;
+            text-indent: 35px;
+        }
+        #image{
+            width:70%;
+            position: relative;
+            left:50px;
+            top:-41px;
+        }
+        img{
+            width:95.3%;
+            height:410px;
+            border-radius: 0 0 10px 0;
+            
+        }
+        hr{
+            margin: 10px 20px;
+            border-color: #5200e1;
+        }
+        #cards{
+            height:250px;
+            margin-top: 60px;
+            display: flex;
+            justify-content: space-around;
+        }
+        .card{
+            width:15%;
+            height:150px;
+            background-color: white;
+            box-shadow: 0px 10px 5px rgba(0,0,0,0.3) ;
+            text-align: center;
+            border-radius: 10px;
+            border:3px solid #5200e1
+        }
+        .prayer-title{
+            border-radius: 7px 7px 0 0;
+            color: white;
+            background: linear-gradient(45deg,#5709ee,#7a37bf);
+            padding-top: 1px;
+            
+        }
+        .prayer-title h1{
+            font-size: 25px;
+            font-weight: 300;
+            padding: 5px;
+        }
+        
+        .time{
+            margin-top: 25px;
+            font-weight: 500;
+        }
+        #selection{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 50px;
+        }
+        select{
+            text-indent: 10px;
+            color:white;
+            font-family: "Roboto",sans-serif;
+            font-weight: 300;
+            width:300px;
+            height:35px;
+            font-size: 25px;
+            background:none; ;
+            border-radius: 10px;
+        }
+        option{
+            font-family: "Roboto",sans-serif;
+            font-weight: 300;
+            background-color:#5709ee
+        } 
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="header">
+
+            <div id="titles">
+                <h1 id="city-name">Dagestan</h1>
+                <h3 id="date">Thursday 3 October</h3>
+                <hr>
+            </div>
+
+            <div id="image">
+                <img src="pngimg.com - mosque_PNG70.png">
+            </div>
+
+        </div>
+        <hr>
+
+        <div id="selection">
+            <select name="" id="select-city" >
+                
+            </select>
+        </div>
+        <hr style="margin-top: 50px;">
+
+
+        <div id="cards">
+            <div class="card">
+
+                <div class="prayer-title">
+                    <h1>Fajr</h1>
+                </div>
+
+                <div class="body">
+                    <h1 class="time" id="fajr-time">4:30</h1>
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <div class="prayer-title">
+                    <h1>Duhr</h1>
+                </div>
+
+                <div class="body">
+                    <h1 class="time" id="duhr-time">4:30</h1>
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <div class="prayer-title">
+                    <h1>Asr</h1>
+                </div>
+
+                <div class="body">
+                    <h1 class="time" id="asr-time">4:30</h1>
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <div class="prayer-title">
+                    <h1>Maghrib</h1>
+                </div>
+
+                <div class="body">
+                    <h1 class="time" id="maghrib-time">4:30</h1>
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <div class="prayer-title">
+                    <h1>Ishaa</h1>
+                </div>
+
+                <div class="body">
+                    <h1 class="time" id="ishaa-time">4:30</h1>
+                </div>
+
+            </div>
+
+        </div>
+        
+    </div>
+</body>
+<script src="./node_modules/axios/dist/axios.min.js"></script>
+
+<script>
+
+    let cities=[
+        {
+            name:"Dagestan",
+            isoName:"Dagestan",
+            country:"RU"
+        },
+        {
+            name:"Beirut",
+            isoName:"Beyrouth",
+            country:"LB"
+        },
+        {   
+            name:"Al Riyadh",
+            isoName:"Ar Riyad",
+            country:"SA"
+        },
+        {
+            name:"Mecca",
+            isoName:"Makka al Mukarramah",
+            country:"SA"
+        },
+        {
+            name:"Dubai",
+            isoName:"Dubai",
+            country:"AE"
+        }
+    ]
+    for(let city of cities){
+        const content=
+        `<option>${city.name}</option>`
+        document.getElementById("select-city").innerHTML+=content
+
+    }
+
+    document.getElementById("select-city").addEventListener("change",function(){
+        document.getElementById("city-name").innerHTML=this.value
+        let cityName=""
+        let countryName=""
+        for(let city of cities){
+            if(city.name==this.value)
+            {
+                countryName=city.country
+                cityName=city.isoName
+            }
+            
+        }
+        getRequest(countryName,cityName)
+    })
+    
+
+    function getRequest(countryName,cityName){
+        let params={  
+            country:countryName,
+            city:cityName
+
+        }
+
+        axios.get('http://api.aladhan.com/v1/timingsByCity/{date}', {
+            params:params
+        })
+        .then(function (response) {
+            const timings=response.data.data.timings
+            fillTime("fajr-time",timings.Fajr)
+            fillTime("duhr-time",timings.Dhuhr)
+            fillTime("asr-time",timings.Asr)
+            fillTime("maghrib-time",timings.Sunset)
+            fillTime("ishaa-time",timings.Isha)
+
+            const date=response.data.data.date.readable
+            document.getElementById("date").innerHTML=date
+
+        })
+        .catch(function (error) {
+            alert(error);
+        })
+    }
+    
+    getRequest("RU","Dagestan")
+
+  function fillTime(id,time){
+    document.getElementById(id).innerHTML=time
+  }
+</script>
+
+</html>
